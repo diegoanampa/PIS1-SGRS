@@ -20,7 +20,6 @@ psycopg2-binary==2.9.9
 
 PyJWT==2.3.0
 pyparsing==2.4.7
-python-apt==2.4.0
 
 PyYAML==5.4.1
 

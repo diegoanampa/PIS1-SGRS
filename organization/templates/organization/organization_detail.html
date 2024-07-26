@@ -1,0 +1,53 @@
+<!-- organization_detail.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalles de la Organización {{ organization.OrgNom }}</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/general.css' %}">
+</head>
+<body class="bg-white w-100 vh-100 d-flex justify-content-center align-items-center">
+    <header>
+        <div class="w-30 px-3 h-100 d-flex justify-content-center align-items-center"> 
+            <img class="me-3" style="width: 70px; height: 55px;" src="{% static 'img/logo.png' %}">
+            <h3 class="fs-3">ReqWizardApp</h3>
+        </div>
+        <ul>
+            <li><a href="{% url 'organization_list' %}">Menu Principal</a>/</li>
+            <li>{{organization.OrgNom}}</li>
+        </ul>
+    </header>
+    <div>
+        <aside>
+            <span><- -></span>
+            <h1>Menu Principal</h1>
+            <div>
+                <img src="{% static 'img/logo.png' %}" alt="">
+            </div>
+            <p>Nombre: pis_sgrs</p>
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button id="close_sesion" type="sumit">Cerrar sesión</button>
+            </form>
+        </aside>
+        <section class="contenedor-section">
+        
+            <h1 class="titulo">Detalles de la Organización {{ organization.OrgNom }}</h1>
+            <p><strong>Código:</strong> {{ organization.OrgCod }}</p>
+            <p><strong>Versión:</strong> {{ organization.OrgVer }}</p>
+            <p><strong>Nombre:</strong> {{ organization.OrgNom }}</p>
+            <p><strong>Fecha de Creación:</strong> {{ organization.OrgFecCre }}</p>
+            <p><strong>Fecha de Modificación:</strong> {{ organization.OrgFecMod }}</p>
+            <p><strong>Estado:</strong> {{ organization.OrgEst }}</p>
+            <p><strong>Comentario:</strong> {{ organization.OrgCom }}</p>
+            <p><strong>Código de Organización:</strong> {{ organization.OrgOrgCod }}</p>
+            <p><strong>Código de Modificación de Plantillas:</strong> {{ organization.OrgCodModPlan }}</p>
+            <a class="btn-registro" href="{% url 'organization_list' %}">Volver al Listado de Organizaciones</a>
+        </section>
+    </div>
+   
+</body>
+</html>
+

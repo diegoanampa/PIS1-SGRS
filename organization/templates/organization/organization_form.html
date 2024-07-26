@@ -1,0 +1,49 @@
+<!-- organization_form.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% if form.instance.OrgCod %}Editar Organización {% else %}Crear Nuevo Organización {% endif %}</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/general.css' %}">
+</head>
+<body class="bg-white w-100 vh-100 d-flex justify-content-center align-items-center">
+    <header>
+        <div class="w-30 px-3 h-100 d-flex justify-content-center align-items-center"> 
+            <img class="me-3" style="width: 70px; height: 55px;" src="{% static 'img/logo.png' %}">
+            <h3 class="fs-3">ReqWizardApp</h3>
+        </div>
+        <ul>
+            <li>Menu Principal</li>
+        </ul>
+    </header>
+    <div>
+        <aside class="contenedor-section">
+            <span><- -></span>
+            <h1>Menu Principal</h1>
+            <div>
+                <img src="{% static 'img/logo.png' %}" alt="">
+            </div>
+            <p>Nombre: pis_sgrs</p>
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button id="close_sesion" type="sumit">Cerrar sesión</button>
+            </form>
+        </aside>
+        <section>
+            <h1>{% if form.instance.OrgCod %}Editar Organización {% else %}Crear Nuevo Organización {% endif %}</h1>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">{% if form.instance.OrgCod %}Actualizar{% else %}Crear{% endif %}</button>
+            </form>
+            <a href="{% url 'organization_list' %}">Cancelar</a>
+        </section>
+    </div>
+   
+
+
+</body>
+</html>
+

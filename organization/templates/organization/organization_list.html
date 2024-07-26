@@ -1,0 +1,129 @@
+<!-- organization_list.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de Organizaciones</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/general.css' %}">
+    <link rel="stylesheet" href="{% static 'css/organizaciones.css' %}">
+</head>
+<body class="bg-white w-100 vh-100 d-flex justify-content-center align-items-center">
+    <header>
+        <div class="w-30 px-3 h-100 d-flex justify-content-center align-items-center"> 
+            <img class="me-3" style="width: 70px; height: 55px;" src="{% static 'img/logo.png' %}">
+            <h3 class="fs-3">ReqWizardApp</h3>
+        </div>
+        <ul>
+            <li>Menu Principal</li>
+        </ul>
+    </header>
+    <div>
+    
+        <aside>
+            <span><- -></span>
+            <h1>Menu Principal</h1>
+            <div>
+                <img src="{% static 'img/logo.png' %}" alt="">
+            </div>
+            <p>Nombre: pis_sgrs</p>
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button id="close_sesion" type="sumit">Cerrar sesión</button>
+            </form>
+            
+        </aside>
+
+        <section class="contenedor-section">
+            <h1 class="titulo-principal">Menu Principal - Empresas</h1>
+            <br>
+            <p class="lista-seccion">Organización Principal</p>
+
+            <table class="table my-4">
+                <thead class="table-light">
+                    <tr>
+                        <th scope="col">Codigo</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Fecha de Creacion</th>
+                        <th scope="col">Fecha de Modificacion</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for organization in organizations %}
+                        {% if forloop.first %}
+                    <tr>
+                         
+                        <th>{{ organization.OrgCod }}</th>                        
+                        <td>{{ organization.OrgNom }}</td>
+                        <td>{{ organization.OrgFecCre }}</td>
+                        <td>{{ organization.OrgFecMod }}</td>
+                        <td>{{ organization.OrgEst }}</td>
+                        <td>
+                            <a href="{% url 'organization_detail' organization.OrgCod %}">Ver detalles</a>
+                            <a href="{% url 'organization_update' organization.OrgCod %}">Editar</a>
+                            <a href="{% url 'organization_delete' organization.OrgCod %}">Eliminar</a>
+                            <a href="{% url 'proyecto_list' org_cod=organization.OrgCod %}">Entrar</a>
+                        </td>
+                    </tr>
+                        {% endif %}
+                    {% empty %}
+                    <tr>
+                        <td>No hay organizaciones disponibles.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <p class="lista-seccion">Organizaciones</p>
+
+            <div class="contenedor-buscador mt-4 mb-5">
+            <a class="btn-registro" href="{% url 'organization_create' %}">Registrar Organización</a>
+            <input class="buscar-organization" type="search" name="buscar-organization" id="" placeholder="Buscar"></input>   
+            </div>
+
+            <table class="table my-4 organizations">
+                <thead class="table-light">
+                    <tr>
+                        <th scope="col">Codigo</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Fecha de Creacion</th>
+                        <th scope="col">Fecha de Modificacion</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for organization in organizations %}
+                        {% if not forloop.first %}
+                    <tr>
+                         
+                        <th>{{ organization.OrgCod }}</th>                        
+                        <td>{{ organization.OrgNom }}</td>
+                        <td>{{ organization.OrgFecCre }}</td>
+                        <td>{{ organization.OrgFecMod }}</td>
+                        <td>{{ organization.OrgEst }}</td>
+                        <td>
+                            <a href="{% url 'organization_detail' organization.OrgCod %}">Ver detalles</a>
+                            <a href="{% url 'organization_update' organization.OrgCod %}">Editar</a>
+                            <a href="{% url 'organization_delete' organization.OrgCod %}">Eliminar</a>
+                            <a href="{% url 'proyecto_list' org_cod=organization.OrgCod %}">Entrar</a>
+                        </td>
+                    </tr>
+                        {% endif %}
+                    {% empty %}
+                    <tr>
+                        <td>No hay organizaciones disponibles.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+              </table>
+
+        </section>
+    </div>
+    
+</body>
+</html>
+

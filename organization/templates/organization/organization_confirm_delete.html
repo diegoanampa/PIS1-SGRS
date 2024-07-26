@@ -1,0 +1,49 @@
+<!-- organization_confirm_delete.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmar Eliminación de la Organización {{ organization.OrgNom }}</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/general.css' %}">   
+</head>
+<body class="bg-white w-100 vh-100 d-flex justify-content-center align-items-center">
+    <header>
+        <div class="w-30 px-3 h-100 d-flex justify-content-center align-items-center"> 
+            <img class="me-3" style="width: 70px; height: 55px;" src="{% static 'img/logo.png' %}">
+            <h3 class="fs-3">ReqWizardApp</h3>
+        </div>
+        <ul>
+            <!--<li><a href="{ url 'dashboard' %}">Menu Principal</a>/</li>-->
+            <!--<li><a href="{ url 'proyecto_list' %}">Proyectos</a>/</li>-->
+            <li>{{proyecto.ProNom}}</li>
+        </ul>
+    </header>
+    <div>
+        <aside>
+            <span><- -></span>
+            <h1>Menu Principal</h1>
+            <div>
+                <img src="{% static 'img/logo.png' %}" alt="">
+            </div>
+            <p>Nombre: pis_sgrs</p>
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button id="close_sesion" type="sumit">Cerrar sesión</button>
+            </form>
+        </aside>
+        <section class="contenedor-section">
+            <h1>¿Estás seguro que deseas eliminar el Organización "{{ organization.OrgNom }}"?</h1>
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit">Eliminar</button>
+            </form>
+            <a href="{% url 'organization_detail' organization.OrgCod %}">Cancelar</a>
+        </section>
+        
+    </div>
+    
+</body>
+</html>
+

@@ -1,6 +1,19 @@
 asgiref==3.8.1
 
 Django==5.0.6
+httplib2==0.20.2
+importlib-metadata==4.6.4
+jeepney==0.7.1
+keyring==23.5.0
+launchpadlib==1.10.16
+lazr.restfulclient==0.14.4
+lazr.uri==1.0.6
+more-itertools==8.10.0
+netifaces==0.11.0
+oauthlib==3.2.0
+psycopg2-binary==2.9.9
+PyGObject==3.42.1
+PyJWT==2.3.0
 
 pyparsing==2.4.7
 

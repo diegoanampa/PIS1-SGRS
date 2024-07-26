@@ -1,0 +1,20 @@
+<!-- templates/evidence/evidence_detail.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle de Evidencia</title>
+</head>
+<body>
+    <h1>Detalle de Evidencia</h1>
+    <p><strong>Código:</strong> {{ evidence.EviCod }}</p>
+    <p><strong>Nombre:</strong> {{ evidence.EviNom }}</p>
+    <p><strong>Entrevista:</strong> {{ evidence.EviEntCod }}</p>
+    <p><strong>Fecha:</strong> {{ evidence.EviFec }}</p>
+    <p><strong>Archivo:</strong> <a href="{{ evidence.EviArc.url }}">{{ evidence.EviArc.name }}</a></p>
+    <p><strong>Categoría:</strong> {{ evidence.EviCatEviCod }}</p>
+    <p><strong>Artifacto:</strong> {{ evidence.EviArtCod }}</p>
+    <a href="{% url 'evidence_list' %}">Volver a la lista</a>
+    <a href="{% url 'evidence_delete' evidence.pk %}">Eliminar Evidencia</a>
+</body>
+</html>

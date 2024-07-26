@@ -1,0 +1,61 @@
+<!-- educcion_detail.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalles de la Educcion {{ educcion.EduCod }}</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/general.css' %}">
+</head>
+<body class="bg-white w-100 vh-100 d-flex justify-content-center align-items-center">
+    <header>
+        <div class="w-30 px-3 h-100 d-flex justify-content-center align-items-center"> 
+            <img class="me-3" style="width: 70px; height: 55px;" src="{% static 'img/logo.png' %}">
+            <h3 class="fs-3">ReqWizardApp</h3>
+        </div>
+        <ul>
+            <li><a href="{% url 'organization_list' %}">Menu Principal</a>/</li>
+            <li>{{educcion.EduCod}}</li>
+        </ul>
+    </header>
+    <div>
+        <aside>
+            <span><- -></span>
+            <h1>Menu Principal</h1>
+            <div>
+                <img src="{% static 'img/logo.png' %}" alt="">
+            </div>
+            <p>Nombre: pis_sgrs</p>
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button id="close_sesion" type="sumit">Cerrar sesión</button>
+            </form>
+        </aside>
+        <section class="contenedor-section">
+            <h1>Detalles del Proyecto {{ educcion.EduNom }}</h1>
+            <p><strong>Código:</strong> {{ educcion.EduCod }}</p>
+            <p><strong>Versión:</strong> {{ educcion.EduVer }}</p>
+            <p><strong>Fecha de Creación:</strong> {{ educcion.EduFecCre }}</p>
+            <p><strong>Fecha de Modificación:</strong> {{ educcion.EduFecMod }}</p>
+            <p><strong>Comentario:</strong> {{ educcion.EduCom }}</p>
+            <p><strong>Código de Proyecto</strong> {{ educcion.EduProCod }}</p>
+            <!-- Mostrar la lista de Ilacion asociadas -->
+            <h2>Ilaciones Asociadas</h2>
+            <ul>
+                {% for ilacion in ilaciones %}
+                    <li>
+                        <strong>Código:</strong> {{ ilacion.IlaCod }}<br>
+                        <strong>Nombre:</strong> {{ ilacion.IlaNom }}<br>
+                    </li>
+                {% empty %}
+                    <li>No hay Ilaciones asociadas.</li>
+                {% endfor %}
+            </ul>
+            <a href="{% url 'educcion_list' pro_cod=pro_cod %}">Volver al Listado de Educciones</a>
+        </section>
+    </div>
+   
+</body>
+</html>
+

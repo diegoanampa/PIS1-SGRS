@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto Menu</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/general.css' %}">
+    <link rel="stylesheet" href="{% static 'css/proyecto_menu.css' %}">
+</head>
+
+<body class="bg-white w-100 vh-100 d-flex justify-content-center align-items-center">
+    <header>
+        <div class="w-30 px-3 h-100 d-flex justify-content-center align-items-center"> 
+            <img class="me-3" style="width: 70px; height: 55px;" src="{% static 'img/logo.png' %}">
+            <h3 class="fs-3">ReqWizardApp</h3>
+        </div>
+        <ul>
+            <li><a href="{% url 'organization_list' %}">Menu Principal</a>/</li>
+            <li><a href="{% url 'proyecto_list' org_cod=org.OrgCod %}">Mocar Company</a>/</li>
+            <li><a href="#">{{proyecto.ProNom}}</a></li>
+        </ul>
+    </header>
+    <div>
+        <aside>
+            <span><- -></span>
+            <h1>Menu Principal</h1>
+            <div>
+                <img src="{% static 'img/logo.png' %}" alt="">
+            </div>
+            <p>Nombre: pis_sgrs</p>
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button id="close_sesion" type="sumit">Cerrar sesión</button>
+            </form>
+        </aside>
+        <section class="contenedor-section">
+            <h1 class="titulo">{{org.OrgNom}}  - {{proyecto.ProNom}}</h1>
+            <br>
+            <p class="lista-seccion">Destacados</p>
+            <div class="items-seccion">
+                <a href="#"><button>Acta de Aceptacion</button></a>
+                <a href="#"><button>Autores</button></a>
+                <a href="{% url 'entrevista_list' pro_cod=proyecto.ProCod %}"><button>Entrevistas</button></a>
+                <a href="{% url 'role_list' %}"><button>Roles</button></a>
+                <a href="{% url 'proyecto_menu_plantillas' org_cod=org.OrgCod pk=proyecto.ProCod %}"><button>Plantillas</button></a>
+            </div>
+            <p class="lista-seccion">Avance del Proyecto</p>
+            <p class="lista-seccion">Historial</p>
+        </section>
+    </div>
+   
+</body>
+</html>

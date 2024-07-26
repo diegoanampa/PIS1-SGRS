@@ -1,0 +1,21 @@
+<!-- templates/evidence/evidence_list.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Evidencias</title>
+</head>
+<body>
+    <h1>Lista de Evidencias</h1>
+    <ul>
+        {% for evidence in evidences %}
+            <li>
+                {{ evidence.EviNom }}
+                <a href="{% url 'evidence_detail' evidence.pk %}">Mostrar</a>
+                <a href="{% url 'evidence_delete' evidence.pk %}">Eliminar</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'create_evidence' %}">Agregar Nueva Evidencia</a>
+</body>
+</html>

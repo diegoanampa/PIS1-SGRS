@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACTA ACEPTACION</title>
+</head>
+<body>
+    <h1>Subir Acta para el Proyecto: {{ proyecto }}</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Subir</button>
+    </form>
+
+    {% if form.instance.pk %}
+    <h2>Previsualización:</h2>
+    <p>Proyecto: {{ form.instance.ActAceCod }}</p>
+    <p>Archivo: <a href="{{ form.instance.ActAceArc.url }}" target="_blank">Ver Acta</a></p>
+    {% endif %}
+</body>
+</html>

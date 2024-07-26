@@ -1,0 +1,27 @@
+.proyecto-logo{
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    position: relative;
+    top: -12px;
+    margin-left: 10px;
+    margin-right: 5px;
+}
+.titulo-principal{
+    display: inline-block;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: rgb(59, 2, 31);
+}
+.buscar-proyecto{
+   margin-right: 50px;
+}
+.contenedor-buscador{
+    display: flex;
+    justify-content: space-between;
+}
+.proyectos{
+    text-align: center;
+}
+

@@ -1,0 +1,18 @@
+<!-- templates/evidence/evidence_confirm_delete.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmar Eliminación</title>
+</head>
+<body>
+    <h1>¿Estás seguro que deseas eliminar esta evidencia?</h1>
+    <p><strong>Código:</strong> {{ evidence.EviCod }}</p>
+    <p><strong>Nombre:</strong> {{ evidence.EviNom }}</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Eliminar</button>
+        <a href="{% url 'evidence_detail' evidence.pk %}">Cancelar</a>
+    </form>
+</body>
+</html>

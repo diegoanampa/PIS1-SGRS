@@ -1,0 +1,85 @@
+<!-- proyecto_list.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de Proyectos</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/general.css' %}">
+    <link rel="stylesheet" href="{% static 'css/proyectos.css' %}">
+</head>
+<body class="bg-white w-100 vh-100 d-flex justify-content-center align-items-center">
+    <header>
+        <div class="w-30 px-3 h-100 d-flex justify-content-center align-items-center"> 
+            <img class="me-3" style="width: 70px; height: 55px;" src="{% static 'img/logo.png' %}">
+            <h3 class="fs-3">ReqWizardApp</h3>
+        </div>
+        <ul>
+            <li><a href="{% url 'organization_list' %}">Menu Principal</a>/</li>
+            <li><a href="#">{{organ.OrgNom|default:"Variable no definida o vacía"}}</a></li>
+        </ul>
+    </header>
+    <div>
+    
+        <aside>
+            <span><- -></span>
+            <h1>Menu Principal</h1>
+            <div>
+                <img src="{% static 'img/logo.png' %}" alt="">
+            </div>
+            <p>Nombre: pis_sgrs</p>
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button id="close_sesion" type="sumit">Cerrar sesión</button>
+            </form>
+            
+        </aside>
+        <section class="contenedor-section">
+            <img class="proyecto-logo" src="{% static 'img/logo.png' %}" alt="">
+            <h1 class="titulo">Mocar Company</h1>
+            <br>
+            <div class="contenedor-buscador mt-4 mb-5">
+                <a class="btn-registro" href="{% url 'proyecto_create' org_cod=org_cod%}">Nuevo Proyecto</a>
+                <input class="buscar-proyecto" type="search" name="buscar-proyecto" id="" placeholder="Buscar"></input>   
+            </div>
+            
+            <table class="table my-4 proyectos">
+                <thead class="table-light">
+                    <tr>
+                        <th scope="col">Codigo</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Fecha de Creacion</th>
+                        <th scope="col">Fecha de Modificacion</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for proyecto in proyectos %}
+                    <tr>
+                        <th>{{ proyecto.ProCod }}</th>
+                        <td>{{ proyecto.ProNom }}</td>
+                        <td>{{ proyecto.ProFecCre }}</td>
+                        <td>{{ proyecto.ProFecMod }}</td>
+                        <td>{{ proyecto.ProEst }}</td>
+                        <td>
+                            <a href="{% url 'proyecto_detail' org_cod=org_cod pk=proyecto.ProCod %}">Ver detalles</a>
+                            <a href="{% url 'proyecto_update' org_cod=org_cod pk=proyecto.ProCod %}">Editar</a>
+                            <a href="{% url 'proyecto_delete' org_cod=org_cod pk=proyecto.ProCod %}">Eliminar</a>
+                            <a href="{% url 'proyecto_menu' org_cod=org_cod pk=proyecto.ProCod %}">Entrar</a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td>No hay proyectos disponibles.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+              </table>
+        </section>
+    </div>
+    
+</body>
+</html>
+

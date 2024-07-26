@@ -1,0 +1,53 @@
+<!-- proyecto_detail.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalles del Proyecto {{ proyecto.ProNom }}</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/general.css' %}">
+</head>
+<body class="bg-white w-100 vh-100 d-flex justify-content-center align-items-center">
+    <header>
+        <div class="w-30 px-3 h-100 d-flex justify-content-center align-items-center"> 
+            <img class="me-3" style="width: 70px; height: 55px;" src="{% static 'img/logo.png' %}">
+            <h3 class="fs-3">ReqWizardApp</h3>
+        </div>
+        <ul>
+            <li><a href="{% url 'organization_list' %}">Menu Principal</a>/</li>
+            <li><a href="{% url 'proyecto_list' org_cod=org_cod %}">Mocar Company</a>/</li>
+            <li>{{proyecto.ProNom}}</li>
+        </ul>
+    </header>
+    <div>
+        <aside>
+            <span><- -></span>
+            <h1>Menu Principal</h1>
+            <div>
+                <img src="{% static 'img/logo.png' %}" alt="">
+            </div>
+            <p>Nombre: pis_sgrs</p>
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button id="close_sesion" type="sumit">Cerrar sesión</button>
+            </form>
+        </aside>
+        <section class="contenedor-section">
+            <h1>Detalles del Proyecto {{ proyecto.ProNom }}</h1>
+            <p><strong>Código:</strong> {{ proyecto.ProCod }}</p>
+            <p><strong>Versión:</strong> {{ proyecto.ProVer }}</p>
+            <p><strong>Nombre:</strong> {{ proyecto.ProNom }}</p>
+            <p><strong>Fecha de Creación:</strong> {{ proyecto.ProFecCre }}</p>
+            <p><strong>Fecha de Modificación:</strong> {{ proyecto.ProFecMod }}</p>
+            <p><strong>Estado:</strong> {{ proyecto.ProEst }}</p>
+            <p><strong>Comentario:</strong> {{ proyecto.ProCom }}</p>
+            <p><strong>Código de Organización:</strong> {{ proyecto.ProOrgCod }}</p>
+            <p><strong>Código de Modificación de Plantillas:</strong> {{ proyecto.ProCodModPlan }}</p>
+            <a href="{% url 'proyecto_list' org_cod=org_cod %}">Volver al Listado de Proyectos</a>
+        </section>
+    </div>
+   
+</body>
+</html>
+

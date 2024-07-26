@@ -1,0 +1,81 @@
+<!-- especificacion_list.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de Especificacion</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/general.css' %}">
+    <link rel="stylesheet" href="{% static 'css/proyectos.css' %}">
+</head>
+<body class="bg-white w-100 vh-100 d-flex justify-content-center align-items-center">
+    <header>
+        <div class="w-30 px-3 h-100 d-flex justify-content-center align-items-center"> 
+            <img class="me-3" style="width: 70px; height: 55px;" src="{% static 'img/logo.png' %}">
+            <h3 class="fs-3">ReqWizardApp</h3>
+        </div>
+        <ul>
+            <li><a href="#">Menu Principal</a>/</li>
+            <li><a href="#">{{project.ProNom|default:"Variable no definida o vacía"}}</a></li>
+        </ul>
+    </header>
+    <div>
+    
+        <aside>
+            <span><- -></span>
+            <h1>Menu Principal</h1>
+            <div>
+                <img src="{% static 'img/logo.png' %}" alt="">
+            </div>
+            <p>Nombre: pis_sgrs</p>
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button id="close_sesion" type="sumit">Cerrar sesión</button>
+            </form>
+            
+        </aside>
+        <section class="contenedor-section">
+            <img class="proyecto-logo" src="{% static 'img/logo.png' %}" alt="">
+            <h1 class="titulo">Mocar Company</h1>
+            <br>
+            <div class="contenedor-buscador mt-4 mb-5">
+                <a class="btn-registro" href="{% url 'especificacion_create' pro_cod=pro_cod%}">Nuevo Especificacion</a>
+                <input class="buscar-especificacion" type="search" name="buscar-especificacion" id="" placeholder="Buscar"></input>   
+            </div>
+            
+            <table class="table my-4 especificacions">
+                <thead class="table-light">
+                    <tr>
+                        <th scope="col">Codigo</th>
+                        <th scope="col">Fecha de Creacion</th>
+                        <th scope="col">Fecha de Modificacion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for especificacion in especificaciones %}
+                    <tr>
+                        <th>{{ especificacion.EspCod }}</th>
+                        <td>{{ especificacion.EspFecCre }}</td>
+                        <td>{{ especificacion.EspFecMod }}</td>
+                        <td>
+                            <a href="{% url 'especificacion_detail' pro_cod=pro_cod esp_cod=especificacion.EspCod %}">Ver detalles</a>
+                            <a href="{% url 'especificacion_update' pro_cod=pro_cod esp_cod=especificacion.EspCod %}">Editar</a>
+                            <a href="{% url 'especificacion_delete' pro_cod=pro_cod esp_cod=especificacion.EspCod %}">Eliminar</a>
+
+                            <!-- <a href="% url 'especificacion_menu' org_cod=org_cod pk=especificacion.ProCod %}">Entrar</a>-->
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td>No hay especificacions disponibles.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+              </table>
+        </section>
+    </div>
+    
+</body>
+</html>
+

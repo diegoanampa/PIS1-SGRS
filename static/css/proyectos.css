@@ -1,0 +1,21 @@
+.proyecto-logo{
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    position: relative;
+    top: -12px;
+    margin-left: 10px;
+    margin-right: 5px;
+}
+
+.buscar-proyecto{
+   margin-right: 50px;
+}
+.contenedor-buscador{
+    display: flex;
+    justify-content: space-between;
+}
+.proyectos{
+    text-align: center;
+}

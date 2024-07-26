@@ -1,0 +1,18 @@
+<!-- especificacion_confirm_delete.html -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmar Eliminación del Especificacion {{ especificacion.EspCod }}</title>
+</head>
+<body>
+    <h1>¿Estás seguro que deseas eliminar el especificacion "{{ especificacion.EspCod }}"?</h1>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Eliminar</button>
+    </form>
+    <a href="{% url 'especificacion_detail' pro_cod=pro_cod esp_cod=especificacion.EspCod %}">Cancelar</a>
+</body>
+</html>
+

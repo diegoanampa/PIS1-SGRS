@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Detalle del Rol</title>
+</head>
+<body>
+    <h1>{{ role.RolNom }}</h1>
+    <p>Código: {{ role.RolCod }}</p>
+    <p>Fecha de Creación: {{ role.RolFecCre }}</p>
+    <p>Comentario: {{ role.RolCom }}</p>
+    <p>Organización: {{ role.RolOrgCod }}</p>
+    <a href="{% url 'role_update' role.RolCod %}">Editar</a>
+    <a href="{% url 'role_list' %}">Volver</a>
+</body>
+</html>
